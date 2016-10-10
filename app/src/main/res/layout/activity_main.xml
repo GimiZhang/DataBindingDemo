@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.example.administrator.databindingdemo.UserBean" />
+
+        <variable
+            name="presenter"
+            type="com.example.administrator.databindingdemo.MainActivity.Presenter" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <ViewStub
+            android:id="@+id/viewstub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/viewstub"/>
+
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onTextChanged="@{presenter::onTextChanged}" />
+
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{presenter.onClick}"
+            android:text="@{user.name}"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/object"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->presenter.onClickListenerBinding(user)}"
+            android:text="回传对象接收"
+            android:textSize="22sp" />
+
+        <!--支持三元运算符-->
+        <TextView
+            android:id="@+id/sanyuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(1 > 2 ? 1 : 2)}'
+            android:textSize="22sp" />
+
+        <include
+            layout="@layout/include_demo"
+            bind:user="@{user}"
+            bind:presenter="@{presenter}"/>
+
+    </LinearLayout>
+
+</layout>
