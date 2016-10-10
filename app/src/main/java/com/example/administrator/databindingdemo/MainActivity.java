@@ -11,7 +11,7 @@ import com.example.administrator.databindingdemo.databinding.ActivityMainBinding
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    final UserBean userBean = new UserBean("张三",27);
+    final UserBean userBean = new UserBean("张三",27,false);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
